@@ -4,8 +4,6 @@ using System.Net;
 using System.Diagnostics;
 using System.IO.Compression;
 using System.IO;
-using Octokit;
-using Octokit.Reactive;
 // using IWshRuntimeLibrary;
 //using System.IO.Compression;
 namespace SPMinstaller
@@ -30,19 +28,6 @@ namespace SPMinstaller
 		{
 				
 		}
-
-		private void radioButton1_CheckedChanged(object sender, EventArgs e)
-		{
-			// Set the branch
-			branch = "dev";
-		}
-
-		private void radioButton2_CheckedChanged(object sender, EventArgs e)
-		{
-			//Set the branch
-			branch = "ptb";
-		}
-
 		private void label2_Click(object sender, EventArgs e)
 		{
 			
@@ -53,17 +38,18 @@ namespace SPMinstaller
 
 			if (System.IO.File.Exists("C:\\temp\\SPM.zip")) System.IO.File.Delete("C:\\temp\\SPM.zip");
 			if (Directory.Exists("C:\\SPM")) Directory.Delete("C:\\SPM", true);
+			if (System.IO.File.Exists("C:\\temp\\tag.spmvi")) System.IO.File.Delete("C:\\temp\\tag.spmvi");
 			// SET BPM URL
-			var client = new GitHubClient(new ProductHeaderValue("bultek"));
-			var release = client.Repository.Release.GetLatest("bultek", "sharppackagemanager");
-			var tag = release[0].TagName;
+			using (WebClient tagdl = new WebClient())
+			{
+				tagdl.DownloadFile("https://raw.githubusercontent.com/Bultek/SharpPackageManager/versioncontrol/ptbtag.spmvi", "C:\\temp\\tag.spmvi");
+				// Param1 = Link of file
+				// Param2 = Path to save
+			}
 
-				
-			//Console.WriteLine(release);
-				
-				
-				
-			string url = "";
+			StreamReader tagreader = new StreamReader("C:\\temp\\tag.spmvi");
+			Tag = tagreader.ReadLine();
+			string url = "https://github.com/Bultek/SharpPackageManager/releases/download/"+Tag+"/SPM.zip";
 			//DOWNLOAD BPM
 			using (WebClient spmdl = new WebClient())
 			{
@@ -76,15 +62,19 @@ namespace SPMinstaller
 
 			}
 			// Extract the archive
-
-				// Post-Installation things, add shortcuts
-			if (desktopshortcut == true) System.IO.File.Copy("C:\\BPM\\BPM.lnk", deskDir+"BPM.lnk");
-			if (startmenushorcut == true) System.IO.File.Copy("C:\\BPM\\BPM.lnk", startmenu+"BPM.lnk");
+			string zipPath = "C:\\temp\\spm.zip";
+			string extractPath = "C:\\";
+			ZipFile.ExtractToDirectory(zipPath, extractPath);
+			// Main Installation Scripts
+			Directory.Move(extractPath + "SharpPackageManager-" + Tag, "C:\\SPM");
+			// Post-Installation things, add shortcuts
+			if (desktopshortcut == true) System.IO.File.Copy("C:\\SPM\\SPM.lnk", deskDir+"SPM.lnk");
+			if (startmenushorcut == true) System.IO.File.Copy("C:\\SPM\\SPM.lnk", startmenu+"SPM.lnk");
 
 			System.IO.File.Delete("C:\\temp\\BPM.zip");
 			MessageBox.Show(
-			"BPM is installed",
-			"BPM",
+			"SPM is installed",
+			"SPM",
 			MessageBoxButtons.OK,
 			MessageBoxIcon.Information,
 			MessageBoxDefaultButton.Button1,

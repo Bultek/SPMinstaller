@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{181B7285-33FF-4070-95C8-5CD33C182915}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>BPMinstaller</RootNamespace>
-    <AssemblyName>BPMinstaller</AssemblyName>
+    <RootNamespace>SPMinstaller</RootNamespace>
+    <AssemblyName>SPMinstaller</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -181,6 +181,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="icon.ico" />
+    <None Include="Resources\ezgif.com-gif-maker.gif" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />

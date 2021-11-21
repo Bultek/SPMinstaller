@@ -60,6 +60,7 @@
             this.ClientSize = new System.Drawing.Size(408, 354);
             this.Controls.Add(this.remove);
             this.Controls.Add(this.InstallBPM);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "SPMinstall";
             this.Text = "SPM INSTALLER (DEV)";
