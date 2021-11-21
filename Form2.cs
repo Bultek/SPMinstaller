@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.IO.Compression;
 using System.IO;
 using Octokit;
+using Octokit.Reactive;
 // using IWshRuntimeLibrary;
 //using System.IO.Compression;
 namespace SPMinstaller
@@ -49,50 +50,47 @@ namespace SPMinstaller
 
 		private void button1_Click(object sender, EventArgs e)
 		{
-			// Check if branch is selected
-			if (branch == "dev" || branch == "ptb")
+
+			if (System.IO.File.Exists("C:\\temp\\SPM.zip")) System.IO.File.Delete("C:\\temp\\SPM.zip");
+			if (Directory.Exists("C:\\SPM")) Directory.Delete("C:\\SPM", true);
+			// SET BPM URL
+			var client = new GitHubClient(new ProductHeaderValue("bultek"));
+			var release = client.Repository.Release.GetLatest("bultek", "sharppackagemanager");
+			var tag = release[0].TagName;
+
+				
+			//Console.WriteLine(release);
+				
+				
+				
+			string url = "";
+			//DOWNLOAD BPM
+			using (WebClient spmdl = new WebClient())
 			{
 
-				if (System.IO.File.Exists("C:\\temp\\SPM.zip")) System.IO.File.Delete("C:\\temp\\SPM.zip");
-				if (Directory.Exists("C:\\SPM")) Directory.Delete("C:\\SPM", true);
-				// SET BPM URL
-				var client = new GitHubClient(new ProductHeaderValue("bultek"));
-				var release = client.Repository.Release.GetLatest("bultek", "sharppackagemanager");
-				var tag = release;
 
-				
-				//Console.WriteLine(release);
-				
-				
-				
-				string url = "";
-				//DOWNLOAD BPM
-				using (WebClient spmdl = new WebClient())
-				{
-
-
-					spmdl.DownloadFile(url, "C:\\temp\\spm.zip");
+				spmdl.DownloadFile(url, "C:\\temp\\spm.zip");
 
 					// Param1 = Link of file
 					// Param2 = Path to save
 
-				}
-				// Extract the archive
+			}
+			// Extract the archive
 
 				// Post-Installation things, add shortcuts
-				if (desktopshortcut == true) System.IO.File.Copy("C:\\BPM\\BPM.lnk", deskDir+"BPM.lnk");
-				if (startmenushorcut == true) System.IO.File.Copy("C:\\BPM\\BPM.lnk", startmenu+"BPM.lnk");
+			if (desktopshortcut == true) System.IO.File.Copy("C:\\BPM\\BPM.lnk", deskDir+"BPM.lnk");
+			if (startmenushorcut == true) System.IO.File.Copy("C:\\BPM\\BPM.lnk", startmenu+"BPM.lnk");
 
-				System.IO.File.Delete("C:\\temp\\BPM.zip");
-				MessageBox.Show(
-				"BPM is installed",
-				"BPM",
-				MessageBoxButtons.OK,
-				MessageBoxIcon.Information,
-				MessageBoxDefaultButton.Button1,
-				MessageBoxOptions.DefaultDesktopOnly);
+			System.IO.File.Delete("C:\\temp\\BPM.zip");
+			MessageBox.Show(
+			"BPM is installed",
+			"BPM",
+			MessageBoxButtons.OK,
+			MessageBoxIcon.Information,
+			MessageBoxDefaultButton.Button1,
+			MessageBoxOptions.DefaultDesktopOnly);
 
-			}
+			
 		}
 		
 
