@@ -119,5 +119,19 @@ namespace SPMinstaller
         {
 
         }
+
+        private void remove_Click(object sender, EventArgs e)
+        {
+			if (Directory.Exists("C:\\SPM")) Directory.Delete("C:\\BPM", true);
+			if (File.Exists(deskDir + "SPM.lnk")) File.Delete(deskDir + "SPM.lnk");
+			if (File.Exists(startmenu + "SPM.lnk")) File.Delete(startmenu + "SPM.lnk");
+			MessageBox.Show(
+				"SPM is uninstalled",
+				"SPM",
+				MessageBoxButtons.OK,
+				MessageBoxIcon.Information,
+				MessageBoxDefaultButton.Button1,
+				MessageBoxOptions.DefaultDesktopOnly);
+		}
     }
     }

@@ -36,6 +36,7 @@ namespace SPMinstaller
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.remove = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -43,9 +44,9 @@ namespace SPMinstaller
             // button1
             // 
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.button1.Location = new System.Drawing.Point(211, 364);
+            this.button1.Location = new System.Drawing.Point(29, 354);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(385, 36);
+            this.button1.Size = new System.Drawing.Size(186, 30);
             this.button1.TabIndex = 4;
             this.button1.Text = "Install SPM";
             this.button1.UseVisualStyleBackColor = true;
@@ -56,7 +57,7 @@ namespace SPMinstaller
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(12, 367);
+            this.label2.Location = new System.Drawing.Point(230, 354);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(149, 25);
             this.label2.TabIndex = 6;
@@ -79,7 +80,7 @@ namespace SPMinstaller
             this.checkBox1.Checked = true;
             this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBox1.Cursor = System.Windows.Forms.Cursors.WaitCursor;
-            this.checkBox1.Location = new System.Drawing.Point(211, 341);
+            this.checkBox1.Location = new System.Drawing.Point(453, 318);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(143, 17);
             this.checkBox1.TabIndex = 10;
@@ -93,7 +94,7 @@ namespace SPMinstaller
             this.checkBox2.AutoSize = true;
             this.checkBox2.Checked = true;
             this.checkBox2.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox2.Location = new System.Drawing.Point(441, 341);
+            this.checkBox2.Location = new System.Drawing.Point(17, 318);
             this.checkBox2.Name = "checkBox2";
             this.checkBox2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.checkBox2.Size = new System.Drawing.Size(155, 17);
@@ -109,9 +110,19 @@ namespace SPMinstaller
             this.imageList1.ImageSize = new System.Drawing.Size(16, 16);
             this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
             // 
+            // remove
+            // 
+            this.remove.Location = new System.Drawing.Point(394, 354);
+            this.remove.Name = "remove";
+            this.remove.Size = new System.Drawing.Size(186, 30);
+            this.remove.TabIndex = 13;
+            this.remove.Text = "Remove SPM";
+            this.remove.UseVisualStyleBackColor = true;
+            this.remove.Click += new System.EventHandler(this.remove_Click);
+            // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = global::SPMinstaller.Properties.Resources.ezgif_com_gif_maker;
+            this.pictureBox1.Image = global::SPMinstaller.Properties.Resources.ezgif_com_gif_maker_1_;
             this.pictureBox1.Location = new System.Drawing.Point(17, 12);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(580, 300);
@@ -124,6 +135,7 @@ namespace SPMinstaller
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(608, 412);
+            this.Controls.Add(this.remove);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.checkBox2);
             this.Controls.Add(this.checkBox1);
@@ -150,5 +162,6 @@ namespace SPMinstaller
         private System.Windows.Forms.CheckBox checkBox2;
         private System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Button remove;
     }
 }
