@@ -66,8 +66,10 @@ namespace SPMinstaller
 			string extractPath = "C:\\";
 			ZipFile.ExtractToDirectory(zipPath, extractPath);
 			// Main Installation Scripts
-			Directory.Move(extractPath + "SharpPackageManager-" + Tag, "C:\\SPM");
+			//Directory.Move(extractPath + "SharpPackageManager-" + Tag, "C:\\SPM");
 			// Post-Installation things, add shortcuts
+			if (System.IO.File.Exists(deskDir + "SPM.lnk")) System.IO.File.Delete(deskDir + "SPM.lnk");
+			if (System.IO.File.Exists(deskDir + "SPM.lnk")) System.IO.File.Delete(deskDir + "SPM.lnk");
 			if (desktopshortcut == true) System.IO.File.Copy("C:\\SPM\\SPM.lnk", deskDir+"SPM.lnk");
 			if (startmenushorcut == true) System.IO.File.Copy("C:\\SPM\\SPM.lnk", startmenu+"SPM.lnk");
 
