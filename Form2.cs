@@ -71,7 +71,7 @@ namespace SPMinstaller
 			if (desktopshortcut == true) System.IO.File.Copy("C:\\SPM\\SPM.lnk", deskDir+"SPM.lnk");
 			if (startmenushorcut == true) System.IO.File.Copy("C:\\SPM\\SPM.lnk", startmenu+"SPM.lnk");
 
-			System.IO.File.Delete("C:\\temp\\BPM.zip");
+			System.IO.File.Delete("C:\\temp\\SPM.zip");
 			MessageBox.Show(
 			"SPM is installed",
 			"SPM",
