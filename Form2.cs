@@ -71,7 +71,7 @@ namespace SPMinstaller
 			if (desktopshortcut == true) System.IO.File.Copy("C:\\SPM\\SPM.lnk", deskDir+"SPM.lnk");
 			if (startmenushorcut == true) System.IO.File.Copy("C:\\SPM\\SPM.lnk", startmenu+"SPM.lnk");
 
-			System.IO.File.Delete("C:\\temp\\BPM.zip");
+			System.IO.File.Delete("C:\\temp\\SPM.zip");
 			MessageBox.Show(
 			"SPM is installed",
 			"SPM",
@@ -102,14 +102,6 @@ namespace SPMinstaller
 			else if (startmenushorcut==false) startmenushorcut= true;
 		}
 
-        private void checkBox3_CheckedChanged(object sender, EventArgs e)
-		{
-			//changing installiation setting for python
-			if (python == true) python = false;
-			else if (python == false) python = true;
-				
-			}
-
         private void label1_Click(object sender, EventArgs e)
         {
 
@@ -122,7 +114,7 @@ namespace SPMinstaller
 
         private void remove_Click(object sender, EventArgs e)
         {
-			if (Directory.Exists("C:\\SPM")) Directory.Delete("C:\\BPM", true);
+			if (Directory.Exists("C:\\SPM")) Directory.Delete("C:\\SPM", true);
 			if (File.Exists(deskDir + "SPM.lnk")) File.Delete(deskDir + "SPM.lnk");
 			if (File.Exists(startmenu + "SPM.lnk")) File.Delete(startmenu + "SPM.lnk");
 			MessageBox.Show(
