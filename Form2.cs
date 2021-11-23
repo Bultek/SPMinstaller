@@ -39,6 +39,7 @@ namespace SPMinstaller
 			if (System.IO.File.Exists("C:\\temp\\SPM.zip")) System.IO.File.Delete("C:\\temp\\SPM.zip");
 			if (Directory.Exists("C:\\SPM")) Directory.Delete("C:\\SPM", true);
 			if (System.IO.File.Exists("C:\\temp\\tag.spmvi")) System.IO.File.Delete("C:\\temp\\tag.spmvi");
+			if (!System.IO.Directory.Exists("C:\\temp")) System.IO.Directory.CreateDirectory("C:\\temp");
 			// SET BPM URL
 			using (WebClient tagdl = new WebClient())
 			{
