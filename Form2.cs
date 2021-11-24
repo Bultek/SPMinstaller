@@ -83,7 +83,7 @@ namespace SPMinstaller
 				{
 
 
-					dotnetdl.DownloadFile("https://download.visualstudio.microsoft.com/download/pr/3223fa10-441d-406b-af2e-94874ce38199/09347f9b4aea0ab34d6944b6b78fa29d/aspnetcore-runtime-6.0.0-win-x64.exe", "C:\\temp\\dotnetruntime.exe");
+					dotnetdl.DownloadFile("https://download.visualstudio.microsoft.com/download/pr/b9cfdb9e-d5cd-4024-b318-00390b729d2f/65690f2440f40654898020cdfffa1050/dotnet-runtime-6.0.0-win-x64.exe", "C:\\temp\\dotnetruntime.exe");
 
 					// Param1 = Link of file
 					// Param2 = Path to save
