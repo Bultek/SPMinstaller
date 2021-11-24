@@ -38,6 +38,7 @@ namespace SPMinstaller
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.remove = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.checkBox3 = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -118,6 +119,7 @@ namespace SPMinstaller
             this.remove.TabIndex = 13;
             this.remove.Text = "Remove SPM";
             this.remove.UseVisualStyleBackColor = true;
+            this.remove.UseWaitCursor = true;
             this.remove.Click += new System.EventHandler(this.remove_Click);
             // 
             // pictureBox1
@@ -130,11 +132,28 @@ namespace SPMinstaller
             this.pictureBox1.TabStop = false;
             this.pictureBox1.UseWaitCursor = true;
             // 
+            // checkBox3
+            // 
+            this.checkBox3.AutoSize = true;
+            this.checkBox3.CheckAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.checkBox3.Checked = true;
+            this.checkBox3.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox3.Location = new System.Drawing.Point(32, 383);
+            this.checkBox3.Name = "checkBox3";
+            this.checkBox3.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.checkBox3.Size = new System.Drawing.Size(183, 17);
+            this.checkBox3.TabIndex = 14;
+            this.checkBox3.Text = "Install .NET 6.0 runtime (required)";
+            this.checkBox3.UseVisualStyleBackColor = true;
+            this.checkBox3.UseWaitCursor = true;
+            this.checkBox3.CheckedChanged += new System.EventHandler(this.checkBox3_CheckedChanged);
+            // 
             // SPMinstaller
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(608, 412);
+            this.Controls.Add(this.checkBox3);
             this.Controls.Add(this.remove);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.checkBox2);
@@ -163,5 +182,6 @@ namespace SPMinstaller
         private System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button remove;
+        private System.Windows.Forms.CheckBox checkBox3;
     }
 }
