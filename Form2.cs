@@ -14,7 +14,7 @@ namespace SPMinstaller
 	{
 		public bool desktopshortcut = true;
 		public bool startmenushorcut = true;
-		public bool python = true;
+		public bool dotnetruntime = true;
 		public string branch;
 		public string deskDir = "C:\\Users\\Public\\Desktop\\";
 		public string startmenu = "C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\";
@@ -71,17 +71,39 @@ namespace SPMinstaller
 			// Post-Installation things, add shortcuts
 			if (System.IO.File.Exists(deskDir + "SPM.lnk")) System.IO.File.Delete(deskDir + "SPM.lnk");
 			if (System.IO.File.Exists(deskDir + "SPM.lnk")) System.IO.File.Delete(deskDir + "SPM.lnk");
-			if (desktopshortcut == true) System.IO.File.Copy("C:\\SPM\\SPM.lnk", deskDir+"SPM.lnk");
-			if (startmenushorcut == true) System.IO.File.Copy("C:\\SPM\\SPM.lnk", startmenu+"SPM.lnk");
+			if (desktopshortcut == true && !System.IO.File.Exists(deskDir + "SPM.lnk")) System.IO.File.Copy("C:\\SPM\\SPM.lnk", deskDir+"SPM.lnk");
+			if (startmenushorcut == true && !System.IO.File.Exists(deskDir + "SPM.lnk")) System.IO.File.Copy("C:\\SPM\\SPM.lnk", startmenu+"SPM.lnk");
 
 			System.IO.File.Delete("C:\\temp\\SPM.zip");
-			MessageBox.Show(
-			"SPM is installed",
-			"SPM",
-			MessageBoxButtons.OK,
-			MessageBoxIcon.Information,
-			MessageBoxDefaultButton.Button1,
-			MessageBoxOptions.DefaultDesktopOnly);
+			//Install .NET 6.0 runtime
+			if (dotnetruntime)
+			{
+				if (System.IO.File.Exists("C:\\temp\\dotnetruntime.exe")) System.IO.File.Delete("C:\\temp\\dotnetruntime.exe");
+				using (WebClient dotnetdl = new WebClient())
+				{
+
+
+					dotnetdl.DownloadFile("https://download.visualstudio.microsoft.com/download/pr/3223fa10-441d-406b-af2e-94874ce38199/09347f9b4aea0ab34d6944b6b78fa29d/aspnetcore-runtime-6.0.0-win-x64.exe", "C:\\temp\\dotnetruntime.exe");
+
+					// Param1 = Link of file
+					// Param2 = Path to save
+
+				}
+				Process PackageStartInfo = new Process();
+				//PackageStartInfo.StartInfo.FileName = "C:\\temp\\dotnetruntime.exe";
+				PackageStartInfo.StartInfo.UseShellExecute = true;
+				PackageStartInfo.StartInfo.Verb = "runas";
+				PackageStartInfo.StartInfo.Arguments = "/install /quiet /norestart";
+				PackageStartInfo.Start();
+				PackageStartInfo.WaitForExit();
+				MessageBox.Show(
+				"SPM is installed",
+				"SPM",
+				MessageBoxButtons.OK,
+				MessageBoxIcon.Information,
+				MessageBoxDefaultButton.Button1,
+				MessageBoxOptions.DefaultDesktopOnly);
+			}
 
 			
 		}
@@ -128,5 +150,11 @@ namespace SPMinstaller
 				MessageBoxDefaultButton.Button1,
 				MessageBoxOptions.DefaultDesktopOnly);
 		}
+
+        private void checkBox3_CheckedChanged(object sender, EventArgs e)
+        {
+			if (dotnetruntime) dotnetruntime = false;
+			else dotnetruntime = true;
+        }
     }
     }
