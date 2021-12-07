@@ -15,6 +15,7 @@ namespace SPMinstaller
 		public bool desktopshortcut = true;
 		public bool startmenushorcut = true;
 		public bool dotnetruntime = true;
+		public bool ptb = false;
 		public string branch;
 		public string deskDir = "C:\\Users\\Public\\Desktop\\";
 		public string startmenu = "C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\";
@@ -41,9 +42,12 @@ namespace SPMinstaller
 			if (System.IO.File.Exists("C:\\temp\\tag.spmvi")) System.IO.File.Delete("C:\\temp\\tag.spmvi");
 			if (!System.IO.Directory.Exists("C:\\temp")) System.IO.Directory.CreateDirectory("C:\\temp");
 			// SET BPM URL
+			if (ptb) branch = "ptb";
+			else branch = "master";
+
 			using (WebClient tagdl = new WebClient())
 			{
-				tagdl.DownloadFile("https://raw.githubusercontent.com/Bultek/SharpPackageManager/versioncontrol/ptbtag.spmvi", "C:\\temp\\tag.spmvi");
+				////tagdl.DownloadFile("https://raw.githubusercontent.com/Bultek/SharpPackageManager/versioncontrol/"+branch+"tag.spmvi", "C:\\temp\\tag.spmvi");
 				// Param1 = Link of file
 				// Param2 = Path to save
 			}
@@ -96,16 +100,16 @@ namespace SPMinstaller
 				PackageStartInfo.StartInfo.Arguments = "/install /quiet /norestart";
 				PackageStartInfo.Start();
 				PackageStartInfo.WaitForExit();
-				MessageBox.Show(
-				"SPM is installed",
-				"SPM",
-				MessageBoxButtons.OK,
-				MessageBoxIcon.Information,
-				MessageBoxDefaultButton.Button1,
-				MessageBoxOptions.DefaultDesktopOnly);
-			}
+				
+				}
+			MessageBox.Show(
+			"SPM is installed",
+			"SPM",
+			MessageBoxButtons.OK,
+			MessageBoxIcon.Information,
+			MessageBoxDefaultButton.Button1,
+			MessageBoxOptions.DefaultDesktopOnly);
 
-			
 		}
 		
 
@@ -156,5 +160,11 @@ namespace SPMinstaller
 			if (dotnetruntime) dotnetruntime = false;
 			else dotnetruntime = true;
         }
+
+        private void checkBox4_CheckedChanged(object sender, EventArgs e)
+        {
+			if (ptb) ptb = false;
+			else ptb = true;
+		}
     }
     }
