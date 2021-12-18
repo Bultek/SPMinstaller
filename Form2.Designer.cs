@@ -28,18 +28,16 @@ namespace SPMinstaller
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SPMinstaller));
             this.button1 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.remove = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.checkBox3 = new System.Windows.Forms.CheckBox();
             this.checkBox4 = new System.Windows.Forms.CheckBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -47,7 +45,7 @@ namespace SPMinstaller
             // 
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.button1.Location = new System.Drawing.Point(53, 654);
-            this.button1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.button1.Margin = new System.Windows.Forms.Padding(6);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(341, 55);
             this.button1.TabIndex = 4;
@@ -86,7 +84,7 @@ namespace SPMinstaller
             this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBox1.Cursor = System.Windows.Forms.Cursors.WaitCursor;
             this.checkBox1.Location = new System.Drawing.Point(830, 587);
-            this.checkBox1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.checkBox1.Margin = new System.Windows.Forms.Padding(6);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(252, 29);
             this.checkBox1.TabIndex = 10;
@@ -101,7 +99,7 @@ namespace SPMinstaller
             this.checkBox2.Checked = true;
             this.checkBox2.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBox2.Location = new System.Drawing.Point(31, 587);
-            this.checkBox2.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.checkBox2.Margin = new System.Windows.Forms.Padding(6);
             this.checkBox2.Name = "checkBox2";
             this.checkBox2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.checkBox2.Size = new System.Drawing.Size(276, 29);
@@ -111,16 +109,10 @@ namespace SPMinstaller
             this.checkBox2.UseWaitCursor = true;
             this.checkBox2.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged);
             // 
-            // imageList1
-            // 
-            this.imageList1.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
-            this.imageList1.ImageSize = new System.Drawing.Size(16, 16);
-            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
-            // 
             // remove
             // 
             this.remove.Location = new System.Drawing.Point(722, 654);
-            this.remove.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.remove.Margin = new System.Windows.Forms.Padding(6);
             this.remove.Name = "remove";
             this.remove.Size = new System.Drawing.Size(341, 55);
             this.remove.TabIndex = 13;
@@ -129,17 +121,6 @@ namespace SPMinstaller
             this.remove.UseWaitCursor = true;
             this.remove.Click += new System.EventHandler(this.remove_Click);
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::SPMinstaller.Properties.Resources.ezgif_com_gif_maker_1_;
-            this.pictureBox1.Location = new System.Drawing.Point(31, 22);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(1063, 554);
-            this.pictureBox1.TabIndex = 12;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.UseWaitCursor = true;
-            // 
             // checkBox3
             // 
             this.checkBox3.AutoSize = true;
@@ -147,7 +128,7 @@ namespace SPMinstaller
             this.checkBox3.Checked = true;
             this.checkBox3.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBox3.Location = new System.Drawing.Point(393, 588);
-            this.checkBox3.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.checkBox3.Margin = new System.Windows.Forms.Padding(6);
             this.checkBox3.Name = "checkBox3";
             this.checkBox3.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.checkBox3.Size = new System.Drawing.Size(329, 29);
@@ -172,15 +153,28 @@ namespace SPMinstaller
             this.checkBox4.UseWaitCursor = true;
             this.checkBox4.CheckedChanged += new System.EventHandler(this.checkBox4_CheckedChanged);
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.InitialImage")));
+            this.pictureBox1.Location = new System.Drawing.Point(31, 12);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(1032, 535);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 16;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click_1);
+            // 
             // SPMinstaller
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1115, 761);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.checkBox4);
             this.Controls.Add(this.checkBox3);
             this.Controls.Add(this.remove);
-            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.checkBox2);
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.label5);
@@ -188,7 +182,7 @@ namespace SPMinstaller
             this.Controls.Add(this.button1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "SPMinstaller";
             this.Text = "Install SPM";
             this.UseWaitCursor = true;
@@ -205,10 +199,9 @@ namespace SPMinstaller
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.CheckBox checkBox2;
-        private System.Windows.Forms.ImageList imageList1;
-        private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button remove;
         private System.Windows.Forms.CheckBox checkBox3;
         private System.Windows.Forms.CheckBox checkBox4;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
