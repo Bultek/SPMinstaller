@@ -4,8 +4,6 @@ using System.Net;
 using System.Diagnostics;
 using System.IO.Compression;
 using System.IO;
-// using IWshRuntimeLibrary;
-//using System.IO.Compression;
 namespace SPMinstaller
 {
 	
@@ -47,7 +45,7 @@ namespace SPMinstaller
 
 			using (WebClient tagdl = new WebClient())
 			{
-				////tagdl.DownloadFile("https://raw.githubusercontent.com/Bultek/SharpPackageManager/versioncontrol/"+branch+"tag.spmvi", "C:\\temp\\tag.spmvi");
+				tagdl.DownloadFile("https://raw.githubusercontent.com/Bultek/SharpPackageManager/versioncontrol/" + branch + "tag.spmvi", "C:\\temp\\tag.spmvi");
 				// Param1 = Link of file
 				// Param2 = Path to save
 			}
@@ -56,16 +54,7 @@ namespace SPMinstaller
 			Tag = tagreader.ReadLine();
 			string url = "https://github.com/Bultek/SharpPackageManager/releases/download/"+Tag+"/SPM.zip";
 			//DOWNLOAD BPM
-			using (WebClient spmdl = new WebClient())
-			{
-
-
-				spmdl.DownloadFile(url, "C:\\temp\\spm.zip");
-
-					// Param1 = Link of file
-					// Param2 = Path to save
-
-			}
+			using (WebClient spmdl = new WebClient()) spmdl.DownloadFile(url, "C:\\temp\\spm.zip");
 			// Extract the archive
 			string zipPath = "C:\\temp\\spm.zip";
 			string extractPath = "C:\\";
@@ -87,14 +76,14 @@ namespace SPMinstaller
 				{
 
 
-					dotnetdl.DownloadFile("https://download.visualstudio.microsoft.com/download/pr/b9cfdb9e-d5cd-4024-b318-00390b729d2f/65690f2440f40654898020cdfffa1050/dotnet-runtime-6.0.0-win-x64.exe", "C:\\temp\\dotnetruntime.exe");
+					dotnetdl.DownloadFile("https://download.visualstudio.microsoft.com/download/pr/df4372ca-82c8-4bfa-acf9-c49e27279e7e/6bddefd26964017ff520dc1443029e04/dotnet-runtime-6.0.1-win-x64.exe", "C:\\temp\\dotnetruntime.exe");
 
 					// Param1 = Link of file
 					// Param2 = Path to save
 
 				}
 				Process PackageStartInfo = new Process();
-				//PackageStartInfo.StartInfo.FileName = "C:\\temp\\dotnetruntime.exe";
+				PackageStartInfo.StartInfo.FileName = "C:\\temp\\dotnetruntime.exe";
 				PackageStartInfo.StartInfo.UseShellExecute = true;
 				PackageStartInfo.StartInfo.Verb = "runas";
 				PackageStartInfo.StartInfo.Arguments = "/install /quiet /norestart";
@@ -110,13 +99,6 @@ namespace SPMinstaller
 			MessageBoxDefaultButton.Button1,
 			MessageBoxOptions.DefaultDesktopOnly);
 
-		}
-		
-
-		private void radioButton3_CheckedChanged(object sender, EventArgs e)
-		{
-			//Set the branch (there is no stable version right now, you will download public test builds)
-			branch = "ptb";
 		}
 
 		private void checkBox1_CheckedChanged(object sender, EventArgs e)
@@ -166,5 +148,15 @@ namespace SPMinstaller
 			if (ptb) ptb = false;
 			else ptb = true;
 		}
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox1_Click_1(object sender, EventArgs e)
+        {
+
+        }
     }
     }
