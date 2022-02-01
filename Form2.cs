@@ -10,13 +10,13 @@ namespace SPMinstaller
 
 	public partial class SPMinstaller : Form
 	{
-		public bool desktopshortcut = true;
-		public bool startmenushorcut = true;
-		public bool dotnetruntime = true;
-		public bool ptb = false;
-		public string branch;
-		public string deskDir = "C:\\Users\\Public\\Desktop\\";
-		public string startmenu = "C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\";
+		public static bool desktopshortcut = true;
+		public static bool startmenushorcut = true;
+		public static bool dotnetruntime = true;
+		public static bool ptb = false;
+		public static string branch;
+		public static string deskDir = "C:\\Users\\Public\\Desktop\\";
+		public static string startmenu = "C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\";
 		public SPMinstaller()
 		{
 			InitializeComponent();
@@ -32,9 +32,8 @@ namespace SPMinstaller
 			
 		}
 
-		private void button1_Click(object sender, EventArgs e)
-		{
-
+		public static void Install()
+        {
 			if (System.IO.File.Exists("C:\\temp\\SPM.zip")) System.IO.File.Delete("C:\\temp\\SPM.zip");
 			if (Directory.Exists("C:\\SPM")) Directory.Delete("C:\\SPM", true);
 			if (System.IO.File.Exists("C:\\temp\\tag.spmvi")) System.IO.File.Delete("C:\\temp\\tag.spmvi");
@@ -51,9 +50,9 @@ namespace SPMinstaller
 			}
 
 			StreamReader tagreader = new StreamReader("C:\\temp\\tag.spmvi");
-			Tag = tagreader.ReadLine();
-			string url = "https://github.com/Bultek/SharpPackageManager/releases/download/"+Tag+"/SPM.zip";
-			//DOWNLOAD BPM
+			string Tag = tagreader.ReadLine();
+			string url = "https://github.com/Bultek/SharpPackageManager/releases/download/" + Tag + "/SPM.zip";
+			//DOWNLOAD SPM
 			using (WebClient spmdl = new WebClient()) spmdl.DownloadFile(url, "C:\\temp\\spm.zip");
 			// Extract the archive
 			string zipPath = "C:\\temp\\spm.zip";
@@ -64,8 +63,8 @@ namespace SPMinstaller
 			// Post-Installation things, add shortcuts
 			if (System.IO.File.Exists(deskDir + "SPM.lnk")) System.IO.File.Delete(deskDir + "SPM.lnk");
 			if (System.IO.File.Exists(deskDir + "SPM.lnk")) System.IO.File.Delete(deskDir + "SPM.lnk");
-			if (desktopshortcut == true && !System.IO.File.Exists(deskDir + "SPM.lnk")) System.IO.File.Copy("C:\\SPM\\SPM.lnk", deskDir+"SPM.lnk");
-			if (startmenushorcut == true && !System.IO.File.Exists(deskDir + "SPM.lnk")) System.IO.File.Copy("C:\\SPM\\SPM.lnk", startmenu+"SPM.lnk");
+			if (desktopshortcut == true && !System.IO.File.Exists(deskDir + "SPM.lnk")) System.IO.File.Copy("C:\\SPM\\SPM.lnk", deskDir + "SPM.lnk");
+			if (startmenushorcut == true && !System.IO.File.Exists(deskDir + "SPM.lnk")) System.IO.File.Copy("C:\\SPM\\SPM.lnk", startmenu + "SPM.lnk");
 
 			System.IO.File.Delete("C:\\temp\\SPM.zip");
 			//Install .NET 6.0 runtime
@@ -89,8 +88,11 @@ namespace SPMinstaller
 				PackageStartInfo.StartInfo.Arguments = "/install /quiet /norestart";
 				PackageStartInfo.Start();
 				PackageStartInfo.WaitForExit();
-				
-				}
+			}
+		}
+		private void button1_Click(object sender, EventArgs e)
+		{
+			Install();
 			MessageBox.Show(
 			"SPM is installed",
 			"SPM",
