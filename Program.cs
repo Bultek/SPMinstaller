@@ -20,8 +20,12 @@ namespace SPMinstaller
 				Application.SetCompatibleTextRenderingDefault(false);
 				Application.Run(new SPMinstaller());
 			}
-			else if (args.Length == 1 && args[0]=="-q") {
-				SPMinstaller.Install();
+			else if (args.Length == 1 && args[0]=="-q")
+            {
+                Console.WriteLine("QI");
+				SPMinstaller.desktopshortcut = true;
+				SPMinstaller.startmenushorcut = true;
+                SPMinstaller.Install();
 			}
 
 		}
