@@ -41,7 +41,7 @@ namespace SPMinstaller
 			// SET BPM URL
 			if (ptb) branch = "ptb";
 			else branch = "master";
-			string url = "https://repo.bultek.com.ua/SPM-BINARY/SPM-"+branch+".zip";
+			string url = "http://repo.bultek.com.ua/SPM-BINARY/SPM-"+branch+".zip";
 			//DOWNLOAD SPM
 			using (WebClient spmdl = new WebClient()) spmdl.DownloadFile(url, "C:\\temp\\spm.zip");
 			// Extract the archive
