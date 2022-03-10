@@ -41,17 +41,7 @@ namespace SPMinstaller
 			// SET BPM URL
 			if (ptb) branch = "ptb";
 			else branch = "master";
-
-			using (WebClient tagdl = new WebClient())
-			{
-				tagdl.DownloadFile("https://raw.githubusercontent.com/Bultek/SharpPackageManager/versioncontrol/" + branch + "tag.spmvi", "C:\\temp\\tag.spmvi");
-				// Param1 = Link of file
-				// Param2 = Path to save
-			}
-
-			StreamReader tagreader = new StreamReader("C:\\temp\\tag.spmvi");
-			string Tag = tagreader.ReadLine();
-			string url = "https://github.com/Bultek/SharpPackageManager/releases/download/" + Tag + "/SPM.zip";
+			string url = "https://repo.bultek.com.ua/SPM-BINARY/SPM-"+branch+".zip";
 			//DOWNLOAD SPM
 			using (WebClient spmdl = new WebClient()) spmdl.DownloadFile(url, "C:\\temp\\spm.zip");
 			// Extract the archive
