@@ -4,6 +4,7 @@ using System.Net;
 using System.Diagnostics;
 using System.IO.Compression;
 using System.IO;
+using IWshRuntimeLibrary;
 namespace SPMinstaller
 {
 	
@@ -12,11 +13,11 @@ namespace SPMinstaller
 	{
 		public static bool desktopshortcut = true;
 		public static bool startmenushorcut = true;
-		public static bool dotnetruntime = true;
-		public static bool ptb = false;
-		public static string branch;
-		public static string deskDir = "C:\\Users\\Public\\Desktop\\";
-		public static string startmenu = "C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\";
+		private static bool dotnetruntime = true;
+		private static bool ptb = false;
+		private static string branch;
+		private static readonly string deskDir = "C:\\Users\\Public\\Desktop\\";
+		private static readonly string startmenu = "C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\";
 		public SPMinstaller()
 		{
 			InitializeComponent();
@@ -38,7 +39,7 @@ namespace SPMinstaller
 			if (Directory.Exists("C:\\SPM")) Directory.Delete("C:\\SPM", true);
 			if (System.IO.File.Exists("C:\\temp\\tag.spmvi")) System.IO.File.Delete("C:\\temp\\tag.spmvi");
 			if (!System.IO.Directory.Exists("C:\\temp")) System.IO.Directory.CreateDirectory("C:\\temp");
-			// SET BPM URL
+			// SET SPM URL
 			if (ptb) branch = "ptb";
 			else branch = "master";
 			string url = "http://repo.bultek.com.ua/SPM-BINARY/SPM-"+branch+".zip";
@@ -49,12 +50,11 @@ namespace SPMinstaller
 			string extractPath = "C:\\";
 			ZipFile.ExtractToDirectory(zipPath, extractPath);
 			// Main Installation Scripts
-			//Directory.Move(extractPath + "SharpPackageManager-" + Tag, "C:\\SPM");
 			// Post-Installation things, add shortcuts
 			if (System.IO.File.Exists(deskDir + "SPM.lnk")) System.IO.File.Delete(deskDir + "SPM.lnk");
 			if (System.IO.File.Exists(deskDir + "SPM.lnk")) System.IO.File.Delete(deskDir + "SPM.lnk");
-			if (desktopshortcut == true && !System.IO.File.Exists(deskDir + "SPM.lnk")) System.IO.File.Copy("C:\\SPM\\SPM.lnk", deskDir + "SPM.lnk");
-			if (startmenushorcut == true && !System.IO.File.Exists(deskDir + "SPM.lnk")) System.IO.File.Copy("C:\\SPM\\SPM.lnk", startmenu + "SPM.lnk");
+            if (desktopshortcut == true && !System.IO.File.Exists(deskDir + "SPM.lnk")) CreateShortcut(deskDir + "SPM.lnk", "C:\\SPM\\SharpPackageManager.exe");
+            if (startmenushorcut == true && !System.IO.File.Exists(deskDir + "SPM.lnk")) CreateShortcut(startmenu + "SPM.lnk", "C:\\SPM\\SharpPackageManager.exe");
 
 			System.IO.File.Delete("C:\\temp\\SPM.zip");
 			//Install .NET 6.0 runtime
@@ -80,7 +80,18 @@ namespace SPMinstaller
 				PackageStartInfo.WaitForExit();
 			}
 		}
-		private void button1_Click(object sender, EventArgs e)
+
+        public static void CreateShortcut(string shortcutPath, string targetPath)
+        {
+            WshShell shell = new WshShell();
+            IWshShortcut shortcut = (IWshShortcut)shell.CreateShortcut(shortcutPath);
+            shortcut.TargetPath = targetPath;
+            shortcut.IconLocation = @"C:\SPM\icon.ico";
+            shortcut.Description = "Sharp Package Manager";
+            shortcut.WorkingDirectory = @"C:\SPM";
+            shortcut.Save();
+        }
+        private void button1_Click(object sender, EventArgs e)
 		{
 			Install();
 			MessageBox.Show(
@@ -118,8 +129,8 @@ namespace SPMinstaller
         private void remove_Click(object sender, EventArgs e)
         {
 			if (Directory.Exists("C:\\SPM")) Directory.Delete("C:\\SPM", true);
-			if (File.Exists(deskDir + "SPM.lnk")) File.Delete(deskDir + "SPM.lnk");
-			if (File.Exists(startmenu + "SPM.lnk")) File.Delete(startmenu + "SPM.lnk");
+			if (System.IO.File.Exists(deskDir + "SPM.lnk")) System.IO.File.Delete(deskDir + "SPM.lnk");
+			if (System.IO.File.Exists(startmenu + "SPM.lnk")) System.IO.File.Delete(startmenu + "SPM.lnk");
 			MessageBox.Show(
 				"SPM is uninstalled",
 				"SPM",
@@ -140,15 +151,5 @@ namespace SPMinstaller
 			if (ptb) ptb = false;
 			else ptb = true;
 		}
-
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void pictureBox1_Click_1(object sender, EventArgs e)
-        {
-
-        }
     }
     }
