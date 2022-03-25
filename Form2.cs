@@ -34,7 +34,7 @@ namespace SPMinstaller
 		}
 
 		public static void Install()
-        {
+		{
 			if (System.IO.File.Exists("C:\\temp\\SPM.zip")) System.IO.File.Delete("C:\\temp\\SPM.zip");
 			if (Directory.Exists("C:\\SPM")) Directory.Delete("C:\\SPM", true);
 			if (System.IO.File.Exists("C:\\temp\\tag.spmvi")) System.IO.File.Delete("C:\\temp\\tag.spmvi");
@@ -53,8 +53,8 @@ namespace SPMinstaller
 			// Post-Installation things, add shortcuts
 			if (System.IO.File.Exists(deskDir + "SPM.lnk")) System.IO.File.Delete(deskDir + "SPM.lnk");
 			if (System.IO.File.Exists(deskDir + "SPM.lnk")) System.IO.File.Delete(deskDir + "SPM.lnk");
-            if (desktopshortcut == true && !System.IO.File.Exists(deskDir + "SPM.lnk")) CreateShortcut(deskDir + "SPM.lnk", "C:\\SPM\\SharpPackageManager.exe");
-            if (startmenushorcut == true && !System.IO.File.Exists(deskDir + "SPM.lnk")) CreateShortcut(startmenu + "SPM.lnk", "C:\\SPM\\SharpPackageManager.exe");
+			if (desktopshortcut == true && !System.IO.File.Exists(deskDir + "SPM.lnk")) CreateShortcut(deskDir + "SPM.lnk", "C:\\SPM\\SharpPackageManager.exe");
+			if (startmenushorcut == true && !System.IO.File.Exists(deskDir + "SPM.lnk")) CreateShortcut(startmenu + "SPM.lnk", "C:\\SPM\\SharpPackageManager.exe");
 
 			System.IO.File.Delete("C:\\temp\\SPM.zip");
 			//Install .NET 6.0 runtime
@@ -81,17 +81,17 @@ namespace SPMinstaller
 			}
 		}
 
-        public static void CreateShortcut(string shortcutPath, string targetPath)
-        {
-            WshShell shell = new WshShell();
-            IWshShortcut shortcut = (IWshShortcut)shell.CreateShortcut(shortcutPath);
-            shortcut.TargetPath = targetPath;
-            shortcut.IconLocation = @"C:\SPM\icon.ico";
-            shortcut.Description = "Sharp Package Manager";
-            shortcut.WorkingDirectory = @"C:\SPM";
-            shortcut.Save();
-        }
-        private void button1_Click(object sender, EventArgs e)
+		public static void CreateShortcut(string shortcutPath, string targetPath)
+		{
+			WshShell shell = new WshShell();
+			IWshShortcut shortcut = (IWshShortcut)shell.CreateShortcut(shortcutPath);
+			shortcut.TargetPath = targetPath;
+			shortcut.IconLocation = @"C:\SPM\icon.ico";
+			shortcut.Description = "Sharp Package Manager";
+			shortcut.WorkingDirectory = @"C:\SPM";
+			shortcut.Save();
+		}
+		private void button1_Click(object sender, EventArgs e)
 		{
 			Install();
 			MessageBox.Show(
@@ -116,18 +116,18 @@ namespace SPMinstaller
 			else if (startmenushorcut==false) startmenushorcut= true;
 		}
 
-        private void label1_Click(object sender, EventArgs e)
-        {
+		private void label1_Click(object sender, EventArgs e)
+		{
 
-        }
+		}
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
+		private void textBox1_TextChanged(object sender, EventArgs e)
+		{
 
-        }
+		}
 
-        private void remove_Click(object sender, EventArgs e)
-        {
+		private void remove_Click(object sender, EventArgs e)
+		{
 			if (Directory.Exists("C:\\SPM")) Directory.Delete("C:\\SPM", true);
 			if (System.IO.File.Exists(deskDir + "SPM.lnk")) System.IO.File.Delete(deskDir + "SPM.lnk");
 			if (System.IO.File.Exists(startmenu + "SPM.lnk")) System.IO.File.Delete(startmenu + "SPM.lnk");
@@ -140,16 +140,16 @@ namespace SPMinstaller
 				MessageBoxOptions.DefaultDesktopOnly);
 		}
 
-        private void checkBox3_CheckedChanged(object sender, EventArgs e)
-        {
+		private void checkBox3_CheckedChanged(object sender, EventArgs e)
+		{
 			if (dotnetruntime) dotnetruntime = false;
 			else dotnetruntime = true;
-        }
+		}
 
-        private void checkBox4_CheckedChanged(object sender, EventArgs e)
-        {
+		private void checkBox4_CheckedChanged(object sender, EventArgs e)
+		{
 			if (ptb) ptb = false;
 			else ptb = true;
 		}
-    }
-    }
+	}
+	}
