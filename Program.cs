@@ -18,18 +18,17 @@ namespace SPMinstaller
 		{
 			if (args.Length == 0)
 			{
-                if (!IsAdministrator())
-                {
-                    MessageBox.Show("You must run this program as administrator.");
+				if (!IsAdministrator())
+				{
+                    MessageBox.Show("You must run this program as administrator.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     System.Environment.Exit(1);
-                }
-                {
-                    MessageBox.Show("You must run this program as administrator.", "SPM Installer", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    System.Environment.Exit(1);
-                }
-				Application.EnableVisualStyles();
-				Application.SetCompatibleTextRenderingDefault(false);
-				Application.Run(new SPMinstaller());
+				}
+				else
+				{
+					Application.EnableVisualStyles();
+					Application.SetCompatibleTextRenderingDefault(false);
+					Application.Run(new SPMinstaller());
+				}
 			}
 			else if (args.Length == 1 && args[0]=="-q")
             {
