@@ -53,8 +53,8 @@ namespace SPMinstaller
 			// Post-Installation things, add shortcuts
 			if (System.IO.File.Exists(deskDir + "SPM.lnk")) System.IO.File.Delete(deskDir + "SPM.lnk");
 			if (System.IO.File.Exists(deskDir + "SPM.lnk")) System.IO.File.Delete(deskDir + "SPM.lnk");
-			if (desktopshortcut == true && !System.IO.File.Exists(deskDir + "SPM.lnk")) CreateShortcut(deskDir + "SPM.lnk", "C:\\SPM\\SharpPackageManager.exe");
-			if (startmenushorcut == true && !System.IO.File.Exists(deskDir + "SPM.lnk")) CreateShortcut(startmenu + "SPM.lnk", "C:\\SPM\\SharpPackageManager.exe");
+			if (desktopshortcut == true && !System.IO.File.Exists(deskDir + "SPM.lnk")) CreateShortcut(deskDir + "SPM.lnk", "C:\\SPM\\SPM.exe");
+			if (startmenushorcut == true && !System.IO.File.Exists(deskDir + "SPM.lnk")) CreateShortcut(startmenu + "SPM.lnk", "C:\\SPM\\SPM.exe");
 
 			System.IO.File.Delete("C:\\temp\\SPM.zip");
 			//Install .NET 6.0 runtime

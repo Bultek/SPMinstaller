@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using SPMinstaller;
+using System.Security.Principal;
+
 namespace SPMinstaller
 {
 	internal static class Program
@@ -16,18 +18,35 @@ namespace SPMinstaller
 		{
 			if (args.Length == 0)
 			{
+                if (!IsAdministrator())
+                {
+                    MessageBox.Show("You must run this program as administrator.");
+                    System.Environment.Exit(1);
+                }
+                {
+                    MessageBox.Show("You must run this program as administrator.", "SPM Installer", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    System.Environment.Exit(1);
+                }
 				Application.EnableVisualStyles();
 				Application.SetCompatibleTextRenderingDefault(false);
 				Application.Run(new SPMinstaller());
 			}
 			else if (args.Length == 1 && args[0]=="-q")
             {
-                Console.WriteLine("QI");
-				SPMinstaller.desktopshortcut = true;
-				SPMinstaller.startmenushorcut = true;
-                SPMinstaller.Install();
-			}
+				if (IsAdministrator())
+				{
+					SPMinstaller.desktopshortcut = true;
+					SPMinstaller.startmenushorcut = true;
+					SPMinstaller.Install();
+				}
+                else MessageBox.Show("You need to run this program as administrator", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
 
+		}
+		public static bool IsAdministrator()
+		{
+			return (new WindowsPrincipal(WindowsIdentity.GetCurrent()))
+					  .IsInRole(WindowsBuiltInRole.Administrator);
 		}
 	}
 }
